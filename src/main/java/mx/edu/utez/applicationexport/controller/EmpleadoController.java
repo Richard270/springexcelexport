@@ -22,7 +22,7 @@ public class EmpleadoController {
     public String listarEmpleados(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Pageable pageRequest = PageRequest.of(page,5);
         Page<Empleado> empleados = empleadoServicio.findAll(pageRequest);
-        PageRender<Empleado> pageRender = new PageRender<>("/lista", empleados);
+        PageRender<Empleado> pageRender = new PageRender<>("/listar", empleados);
 
         model.addAttribute("titulo", "Listado de empleados");
         model.addAttribute("empleados", empleados);

@@ -45,7 +45,9 @@ public class PageRender<T> {
     public void setPaginas(List<PageItem> paginas) {
         this.paginas = paginas;
     }
-
+    public boolean isFirst() {
+        return page.isFirst();
+    }
     public boolean isLast() {
         return page.isLast();
     }
