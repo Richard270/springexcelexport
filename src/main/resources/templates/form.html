@@ -12,42 +12,7 @@
                 <h1 class="text-center" th:text="${titulo}"></h1>
                 <div class="card-body">
                     <form th:action="@{/form}" th:object="${empleado}" method="post">
-                        <inpu th:type="hidden" th:field="*{id}" th:value="${empleado.id}" ></inpu>
-                        <div class="form-group">
-                            <labe>Nombre: </labe>
-                            <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errorclass="*{nombre}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>Apellido: </labe>
-                            <input type="text" th:field="*{apellido}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errorclass="*{apellido}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>Email: </labe>
-                            <input type="text" th:field="*{email}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errorclass="*{email}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>Teléfono: </labe>
-                            <input type="int" th:field="*{telefono}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}" th:errorclass="*{telefono}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>sexo: </labe>
-                            <input type="" th:field="*{apellido}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errorclass="*{apellido}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>salario: </labe>
-                            <input type="text" th:field="*{apellido}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errorclass="*{apellido}"></small>
-                        </div>
-                        <div class="form-group">
-                            <labe>fecha: </labe>
-                            <input type="text" th:field="*{apellido}" class="form-control" th:errorclass="form-control alert-danger">
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errorclass="*{apellido}"></small>
-                        </div>
+                        <input type="hidden" th:field="*{}" name="" id="">
                     </form>
                 </div>
             </div>

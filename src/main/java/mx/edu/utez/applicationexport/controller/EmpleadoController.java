@@ -3,6 +3,7 @@ package mx.edu.utez.applicationexport.controller;
 import mx.edu.utez.applicationexport.entidades.Empleado;
 import mx.edu.utez.applicationexport.service.EmpleadoServicio;
 import mx.edu.utez.applicationexport.util.paginacion.PageRender;
+import mx.edu.utez.applicationexport.utils.reports.EmpleadoExportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +19,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.naming.Binding;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -88,8 +95,6 @@ public class EmpleadoController {
         return "redirect:/listar";
     }
 
-
-
     @GetMapping({"/","/listar",""})
     public String listarEmpleados(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Pageable pageRequest = PageRequest.of(page,5);
@@ -102,4 +107,23 @@ public class EmpleadoController {
 
         return "listar";
     }
+
+    @GetMapping("/exportarExcel")
+    public void exportarEmpleadosExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd:mm-ss");
+        String fechaActual = dateFormat.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Empleados_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera, valor);
+
+        List<Empleado> empleados = empleadoServicio.findAll();
+
+        EmpleadoExportExcel exporter = new EmpleadoExportExcel(empleados);
+        exporter.exportar(response);
+    }
+
 }
